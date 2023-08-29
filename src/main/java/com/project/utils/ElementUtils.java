@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ElementUtils {
 	
 	WebDriver driver;
+	long durationInSeconds=CommonUtils.EXPLICIT_WAIT_BASIC_TIME;
 	
 	public ElementUtils(WebDriver driver) {
 		
@@ -21,14 +22,14 @@ public class ElementUtils {
 		
 	}
 	
-	public void clickOnElement(WebElement element,long durationInSeconds) {
+	public void clickOnElement(WebElement element) {
 		
 		WebElement webElement = waitForElement(element,durationInSeconds);
 		webElement.click();
 		
 	}
 	
-	public void typeTextIntoElement(WebElement element,String textToBeTyped,long durationInSeconds) {
+	public void typeTextIntoElement(WebElement element,String textToBeTyped) {
 		
 		WebElement webElement = waitForElement(element,durationInSeconds);
 		webElement.click();
@@ -52,7 +53,7 @@ public class ElementUtils {
 		
 	}
 	
-	public void selectOptionInDropdown(WebElement element,String dropDownOption,long durationInSeconds) {
+	public void selectOptionInDropdown(WebElement element,String dropDownOption) {
 		
 		WebElement webElement = waitForElement(element,durationInSeconds);
 		Select select = new Select(webElement);
@@ -60,21 +61,21 @@ public class ElementUtils {
 		
 	}
 	
-	public void acceptAlert(long durationInSeconds) {
+	public void acceptAlert() {
 		
-		Alert alert = waitForAlert(durationInSeconds);
+		Alert alert = waitForAlert();
 		alert.accept();
 		
 	}
 	
 	public void dismissAlert(long durationInSeconds) {
 		
-		Alert alert = waitForAlert(durationInSeconds);
+		Alert alert = waitForAlert();
 		alert.dismiss();
 		
 	}
 	
-	public Alert waitForAlert(long durationInSeconds) {
+	public Alert waitForAlert() {
 		
 		Alert alert = null;
 		
@@ -89,7 +90,7 @@ public class ElementUtils {
 		
 	}
 	
-	public void mouseHoverAndClick(WebElement element,long durationInSeconds) {
+	public void mouseHoverAndClick(WebElement element) {
 		
 		WebElement webElement = waitForVisibilityOfElement(element,durationInSeconds);	
 		Actions actions = new Actions(driver);
@@ -112,7 +113,7 @@ public class ElementUtils {
 		
 	}
 	
-	public void javaScriptClick(WebElement element,long durationInSeconds) {
+	public void javaScriptClick(WebElement element) {
 		
 		WebElement webElement = waitForVisibilityOfElement(element,durationInSeconds);
 		JavascriptExecutor jse = ((JavascriptExecutor)driver);
@@ -120,7 +121,7 @@ public class ElementUtils {
 		
 	}
 	
-	public void javaScriptType(WebElement element,long durationInSeconds,String textToBeTyped) {
+	public void javaScriptType(WebElement element,String textToBeTyped) {
 		
 		WebElement webElement = waitForVisibilityOfElement(element,durationInSeconds);
 		JavascriptExecutor jse = ((JavascriptExecutor)driver);
@@ -128,14 +129,14 @@ public class ElementUtils {
 		
 	}
 	
-	public String getTextFromElement(WebElement element,long durationInSeconds) {
+	public String getTextFromElement(WebElement element) {
 		
 		WebElement webElement = waitForElement(element,durationInSeconds);
 		return webElement.getText();
 		
 	}
 	
-	public boolean displayStatusOfElement(WebElement element,long durationInSeconds) {
+	public boolean displayStatusOfElement(WebElement element) {
 		
 		try {
 			WebElement webElement = waitForVisibilityOfElement(element,durationInSeconds);
