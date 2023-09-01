@@ -2,6 +2,8 @@ package com.project.utils;
 
 import java.time.Duration;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +17,7 @@ public class ElementUtils {
 	
 	WebDriver driver;
 	long durationInSeconds=CommonUtils.EXPLICIT_WAIT_BASIC_TIME;
-	
+	private static Logger logger = LogManager.getLogger(ElementUtils.class);
 	public ElementUtils(WebDriver driver) {
 		
 		this.driver = driver;
@@ -26,6 +28,7 @@ public class ElementUtils {
 		
 		WebElement webElement = waitForElement(element,durationInSeconds);
 		webElement.click();
+		logger.info("clickOnElement(), invoked and clicked on element "+element);
 		
 	}
 	
@@ -35,7 +38,7 @@ public class ElementUtils {
 		webElement.click();
 		webElement.clear();
 		webElement.sendKeys(textToBeTyped);
-		
+		logger.info("typeTextIntoElement(), invoked and enter text  "+textToBeTyped +" in "+element);
 	}
 	
 	public WebElement waitForElement(WebElement element,long durationInSeconds) {
@@ -48,7 +51,7 @@ public class ElementUtils {
 		}catch(Throwable e) {
 			e.printStackTrace();
 		}
-		
+		logger.info(element+ " element is clickable");
 		return webElement;
 		
 	}
@@ -58,13 +61,14 @@ public class ElementUtils {
 		WebElement webElement = waitForElement(element,durationInSeconds);
 		Select select = new Select(webElement);
 		select.selectByVisibleText(dropDownOption);
-		
+		logger.info("selectOptionInDropdown(), invoked , value selected from dropdown "+dropDownOption);
 	}
 	
 	public void acceptAlert() {
 		
 		Alert alert = waitForAlert();
 		alert.accept();
+		logger.info("alert accepted successfully");
 		
 	}
 	
@@ -72,7 +76,7 @@ public class ElementUtils {
 		
 		Alert alert = waitForAlert();
 		alert.dismiss();
-		
+		logger.info("alert dismiss successfully");
 	}
 	
 	public Alert waitForAlert() {
@@ -85,7 +89,7 @@ public class ElementUtils {
 		}catch(Throwable e) {
 			e.printStackTrace();
 		}
-		
+		logger.info("waiting for the alert");
 		return alert;
 		
 	}
@@ -95,6 +99,7 @@ public class ElementUtils {
 		WebElement webElement = waitForVisibilityOfElement(element,durationInSeconds);	
 		Actions actions = new Actions(driver);
 		actions.moveToElement(webElement).click().build().perform();
+		logger.info("mousehover on element "+element+" and clicked");
 		
 	}
 	
@@ -108,7 +113,7 @@ public class ElementUtils {
 		}catch(Throwable e) {
 			e.printStackTrace();
 		}
-		
+		logger.info("waiting for the element visibility");
 		return webElement;
 		
 	}
@@ -118,7 +123,7 @@ public class ElementUtils {
 		WebElement webElement = waitForVisibilityOfElement(element,durationInSeconds);
 		JavascriptExecutor jse = ((JavascriptExecutor)driver);
 		jse.executeScript("arguments[0].click();",webElement);
-		
+		logger.info("clicked on element using javascriptexecutor");
 	}
 	
 	public void javaScriptType(WebElement element,String textToBeTyped) {
@@ -126,12 +131,13 @@ public class ElementUtils {
 		WebElement webElement = waitForVisibilityOfElement(element,durationInSeconds);
 		JavascriptExecutor jse = ((JavascriptExecutor)driver);
 		jse.executeScript("arguments[0].value='"+textToBeTyped+"'",webElement);
-		
+		logger.info("enter text in textbox using  javascriptexecutor");
 	}
 	
 	public String getTextFromElement(WebElement element) {
 		
 		WebElement webElement = waitForElement(element,durationInSeconds);
+		logger.info("getting text from webpage "+webElement.getText());
 		return webElement.getText();
 		
 	}
