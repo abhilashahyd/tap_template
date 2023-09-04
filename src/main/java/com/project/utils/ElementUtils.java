@@ -41,6 +41,13 @@ public class ElementUtils {
 		logger.info("typeTextIntoElement(), invoked and enter text  "+textToBeTyped +" in "+element);
 	}
 	
+	public void clearTextField(WebElement element) {
+		
+		WebElement webElement = waitForElement(element,durationInSeconds);
+		webElement.clear();
+		logger.info("clearTextField() in"+element);
+	}
+		
 	public WebElement waitForElement(WebElement element,long durationInSeconds) {
 		
 		WebElement webElement = null;
@@ -142,7 +149,7 @@ public class ElementUtils {
 		
 	}
 	
-	public boolean displayStatusOfElement(WebElement element) {
+	public boolean isElementDisplayed(WebElement element) {
 		
 		try {
 			WebElement webElement = waitForVisibilityOfElement(element,durationInSeconds);
