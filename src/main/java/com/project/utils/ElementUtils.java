@@ -24,7 +24,7 @@ public class ElementUtils {
 		
 	}
 	
-	public void clickOnElement(WebElement element) {
+	public void clickElement(WebElement element) {
 		
 		WebElement webElement = waitForElement(element,durationInSeconds);
 		webElement.click();
@@ -32,20 +32,23 @@ public class ElementUtils {
 		
 	}
 	
-	public void typeTextIntoElement(WebElement element,String textToBeTyped) {
+
+
+	public void clearAndSendKeys(WebElement element,String textToBeTyped) {
 		
 		WebElement webElement = waitForElement(element,durationInSeconds);
 		webElement.click();
 		webElement.clear();
 		webElement.sendKeys(textToBeTyped);
-		logger.info("typeTextIntoElement(), invoked and enter text  "+textToBeTyped +" in "+element);
+		logger.info("clearAndSendKeys(), invoked and enter text  "+textToBeTyped +" in "+element);
 	}
 	
-	public void clearTextField(WebElement element) {
+
+	public void clearElement(WebElement element) {
 		
 		WebElement webElement = waitForElement(element,durationInSeconds);
 		webElement.clear();
-		logger.info("clearTextField() in"+element);
+		logger.info("clearElement() in"+element);
 	}
 		
 	public WebElement waitForElement(WebElement element,long durationInSeconds) {
@@ -141,7 +144,7 @@ public class ElementUtils {
 		logger.info("enter text in textbox using  javascriptexecutor");
 	}
 	
-	public String getTextFromElement(WebElement element) {
+	public String getElementText(WebElement element) {
 		
 		WebElement webElement = waitForElement(element,durationInSeconds);
 		logger.info("getting text from webpage "+webElement.getText());
